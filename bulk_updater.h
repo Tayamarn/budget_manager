@@ -3,8 +3,10 @@
 #include "entities.h"
 #include "summing_segment_tree.h"
 
-#include <cstdint>
 #include <cmath>
+#include <cstdint>
+#include <functional>
+#include <numeric>
 #include <utility>
 #include <vector>
 
@@ -22,11 +24,12 @@ struct BulkTaxApplier {
     double ComputeFactor() const {
         // static const double factor = 0.87;
         // return std::pow(factor, count);
-        double res = 1;
-        for (auto f : factors) {
-            res *= f;
-        }
-        return res;
+        // double res = 1;
+        // for (auto f : factors) {
+        //     res *= f;
+        // }
+        // return res;
+        return std::accumulate(factors.begin(), factors.end(), 1.0, std::multiplies<double>());
     }
 
     // int count = 0;
